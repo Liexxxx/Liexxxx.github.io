@@ -124,6 +124,43 @@
       transition: transform 0.1s;
       transform-style: preserve-3d;
     }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #000;
+      border: 2px solid red;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 15px red;
+      z-index: 100;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .popup input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid #555;
+      background-color: #111;
+      color: white;
+    }
+
+    .popup label {
+      margin-right: 20px;
+    }
+
+    .popup-close {
+      float: right;
+      cursor: pointer;
+      font-weight: bold;
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -141,6 +178,7 @@
         <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
         Discord
       </a>
+      <button class="button" onclick="openReportPopup()">Report an Issue</button>
     </div>
 
     <div class="card fade-in">
@@ -166,14 +204,51 @@
     </div>
   </div>
 
+  <div id="popup" class="popup" style="display:none;">
+    <span class="popup-close" onclick="closeReportPopup()">×</span>
+    <h3>Report an Issue</h3>
+    <input type="text" id="issueText" placeholder="Describe the issue...">
+    <div>
+      <label><input type="radio" name="issueType" value="MENU" checked> Menu</label>
+      <label><input type="radio" name="issueType" value="TEMPLATE"> Template</label>
+    </div>
+    <button class="button" onclick="sendIssueReport()">Submit</button>
+  </div>
+
   <script>
+    const downloadWebhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM3NzIzNDU2MTk5MzU0MzY5MC9yMjExVkJlSnM5SDJhZ1FZOU13MUVULUxqcHo2NGRTS2ZxQTJtRXBlSnZjdDV1MUpTTF9GZXdFOUQ0M1RRUmI5Slkxcg==");
+    const issueWebhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM3NzM3NjUzNzc4MzA0NjIxNC9MNk1xYzJZQXZIUGctTmtrMy1HdlNlTGVCb1Zjd0lXRUFkWFRvbzBUMEpOb0lsaVdIS2JoTWotUVpmSVliZmswT0p5bw==");
+
     function sendWebhookAndDownload() {
-      fetch('https://discord.com/api/webhooks/1377234561993543690/r211VBeJs9H2agQY9Mw1ET-Ljpz64dSKfqA2mEpeJvct5u1JSL_FewE9D43TQRb9JY1r', {
+      fetch(downloadWebhook, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content: '📥 A user has downloaded the menu!' })
       });
       window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Mod.gg.dll';
+    }
+
+    function openReportPopup() {
+      document.getElementById('popup').style.display = 'block';
+    }
+
+    function closeReportPopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    function sendIssueReport() {
+      const text = document.getElementById('issueText').value;
+      const type = document.querySelector('input[name="issueType"]:checked').value;
+      const message = `ISSUE WITH ${type} - "${text}"`;
+
+      fetch(issueWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: message })
+      });
+
+      closeReportPopup();
+      alert("✅ Issue reported!");
     }
 
     const img = document.getElementById('leanImage');
