@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Download Menu</title>
+  <title>Mod.gg [V-0.0.1] - Download</title>
   <style>
     html, body {
       height: 100%;
@@ -42,10 +42,11 @@
       background-color: #000;
       border: 2px solid red;
       border-radius: 20px;
-      padding: 40px;
-      text-align: center;
+      padding: 30px 40px;
+      text-align: left;
       box-shadow: 0 0 15px red;
-      margin-bottom: 20px;
+      max-width: 600px;
+      margin: 20px;
     }
 
     .card h1 {
@@ -53,9 +54,21 @@
       margin-bottom: 10px;
     }
 
-    .card p {
+    .card h3 {
+      color: #ff4c4c;
+      margin-top: 20px;
+      margin-bottom: 5px;
+    }
+
+    .card p, .card li {
       color: #ccc;
-      margin-bottom: 30px;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin: 0;
     }
 
     .button, .discord-btn {
@@ -71,7 +84,7 @@
       text-decoration: none;
       min-width: 150px;
       text-align: center;
-      margin: 5px;
+      margin: 10px 5px 0;
     }
 
     .button:hover, .discord-btn:hover {
@@ -102,8 +115,37 @@
 <body>
 
   <div class="card">
-    <h1>Welcome!</h1>
-    <p>Click the button below to download the menu.</p>
+    <h1>📦 Release: Mod.gg [ V-0.0.1 ]</h1>
+    <h3>🔗 Download</h3>
+    <p>⬇️ Click the button below to download<br>(Hosted on: GitHub)</p>
+
+    <h3>📃 Description</h3>
+    <ul>
+      <li>Free to use</li>
+      <li>No money needed</li>
+      <li>All mods are UND</li>
+      <li>A unique Menu with a sleek design</li>
+      <li>A GUI with a unique and sleek design</li>
+      <li>A SoundBoard GUI with a unique and sleek design</li>
+      <li>Very easy to use</li>
+    </ul>
+
+    <h3>🧾 How to Install</h3>
+    <ul>
+      <li>Download the .dll file from the link below.</li>
+      <li>Put the file into your BepInEx/plugins folder.</li>
+      <li>Launch the game and enjoy!</li>
+    </ul>
+
+    <h3>❗ Notes</h3>
+    <ul>
+      <li>Works with BepInEx 6.x</li>
+      <li>Works with BepInEx 5.x</li>
+      <li>Works with BepInEx 4.x</li>
+    </ul>
+
+    <h3>🧠 Support</h3>
+    <p>Having issues or questions?<br>Report them in ⁠⟬🚨⟭issues or contact <code>@everyone</code></p>
 
     <button class="button" onclick="sendWebhookAndDownload()">Download</button>
     <a class="discord-btn button" href="https://discord.gg/FGBsbdYvrq" target="_blank">
@@ -120,18 +162,13 @@
     function sendWebhookAndDownload() {
       fetch('https://discord.com/api/webhooks/1377234561993543690/r211VBeJs9H2agQY9Mw1ET-Ljpz64dSKfqA2mEpeJvct5u1JSL_FewE9D43TQRb9JY1r', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          content: '📥 A user has downloaded the menu!'
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: '📥 A user has downloaded the menu!' })
       });
 
       window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Mod.gg.dll';
     }
 
-    // Leaning image effect
     const img = document.getElementById('leanImage');
     document.addEventListener('mousemove', (e) => {
       const rect = img.getBoundingClientRect();
