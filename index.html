@@ -8,28 +8,44 @@
       height: 100%;
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(-45deg, #1a1a1a, #2c2c2c, #1a1a1a, #0f0f0f);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background: black;
+      overflow: hidden;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      flex-direction: column;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(red 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: moveStars 100s linear infinite;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    @keyframes moveStars {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100px, -100px); }
     }
 
     .card {
+      position: relative;
+      z-index: 1;
       background-color: #000;
       border: 2px solid red;
       border-radius: 20px;
       padding: 40px;
       text-align: center;
       box-shadow: 0 0 15px red;
+      margin-bottom: 20px;
     }
 
     .card h1 {
@@ -42,34 +58,44 @@
       margin-bottom: 30px;
     }
 
-    .button {
+    .button, .discord-btn {
+      display: inline-block;
       background-color: red;
       border: none;
       color: white;
       padding: 12px 24px;
-      margin: 5px;
       font-size: 16px;
       cursor: pointer;
       border-radius: 12px;
       transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      min-width: 150px;
+      text-align: center;
+      margin: 5px;
     }
 
-    .button:hover {
+    .button:hover, .discord-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 10px red;
-    }
-
-    .discord-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
     }
 
     .discord-icon {
       width: 20px;
       height: 20px;
       filter: brightness(0) invert(1);
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    .leaning-image-container {
+      perspective: 1000px;
+      z-index: 1;
+    }
+
+    .leaning-image {
+      width: 300px;
+      transition: transform 0.1s;
+      transform-style: preserve-3d;
     }
   </style>
 </head>
@@ -80,15 +106,18 @@
     <p>Click the button below to download the menu.</p>
 
     <button class="button" onclick="sendWebhookAndDownload()">Download</button>
-    <a class="button discord-btn" href="https://discord.gg/FGBsbdYvrq" target="_blank">
+    <a class="discord-btn button" href="https://discord.gg/FGBsbdYvrq" target="_blank">
       <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
       Discord
     </a>
   </div>
 
+  <div class="leaning-image-container">
+    <img src="https://i.ibb.co/TDkQ9Z37/Capture-removebg-preview-1.png" alt="Decorative" class="leaning-image" id="leanImage">
+  </div>
+
   <script>
     function sendWebhookAndDownload() {
-      // Send webhook
       fetch('https://discord.com/api/webhooks/1377234561993543690/r211VBeJs9H2agQY9Mw1ET-Ljpz64dSKfqA2mEpeJvct5u1JSL_FewE9D43TQRb9JY1r', {
         method: 'POST',
         headers: {
@@ -99,9 +128,21 @@
         })
       });
 
-      // Trigger download
       window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Mod.gg.dll';
     }
+
+    // Leaning image effect
+    const img = document.getElementById('leanImage');
+    document.addEventListener('mousemove', (e) => {
+      const rect = img.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+      const rotateX = (deltaY / rect.height) * 10;
+      const rotateY = -(deltaX / rect.width) * 10;
+      img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
   </script>
 
 </body>
