@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download My File</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 100px;">
+
+  <h1>Welcome!</h1>
+  <p>Click the button below to download the menu.</p>
+
+  <button onclick="sendWebhookAndDownload()">Download Now</button>
+
+  <script>
+    function sendWebhookAndDownload() {
+      // Send webhook
+      fetch('https://discord.com/api/webhooks/1377234561993543690/r211VBeJs9H2agQY9Mw1ET-Ljpz64dSKfqA2mEpeJvct5u1JSL_FewE9D43TQRb9JY1r', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          content: '📥 A user has download the menu!'
+        })
+      });
+
+      // Trigger download
+      window.location.href = 'MyCoolTool.zip';
+    }
+  </script>
+
+</body>
+</html>
