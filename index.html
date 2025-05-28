@@ -5,16 +5,11 @@
   <title>Mod.gg [V-0.0.1] - Download</title>
   <style>
     html, body {
-      height: 100%;
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: black;
-      overflow: hidden;
       color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      overflow-x: hidden;
     }
 
     body::before {
@@ -36,9 +31,17 @@
       100% { transform: translate(-100px, -100px); }
     }
 
-    .card {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+      gap: 40px;
       position: relative;
       z-index: 1;
+    }
+
+    .card {
       background-color: #000;
       border: 2px solid red;
       border-radius: 20px;
@@ -46,7 +49,15 @@
       text-align: left;
       box-shadow: 0 0 15px red;
       max-width: 600px;
-      margin: 20px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card h1 {
@@ -103,6 +114,9 @@
     .leaning-image-container {
       perspective: 1000px;
       z-index: 1;
+      display: flex;
+      justify-content: center;
+      padding-top: 40px;
     }
 
     .leaning-image {
@@ -113,49 +127,43 @@
   </style>
 </head>
 <body>
-
-  <div class="card">
-    <h1>📦 Release: Mod.gg [ V-0.0.1 ]</h1>
-    <h3>🔗 Download</h3>
-    <p>⬇️ Click the button below to download<br>(Hosted on: GitHub)</p>
-
-    <h3>📃 Description</h3>
-    <ul>
-      <li>Free to use</li>
-      <li>No money needed</li>
-      <li>All mods are UND</li>
-      <li>A unique Menu with a sleek design</li>
-      <li>A GUI with a unique and sleek design</li>
-      <li>A SoundBoard GUI with a unique and sleek design</li>
-      <li>Very easy to use</li>
-    </ul>
-
-    <h3>🧾 How to Install</h3>
-    <ul>
-      <li>Download the .dll file from the link below.</li>
-      <li>Put the file into your BepInEx/plugins folder.</li>
-      <li>Launch the game and enjoy!</li>
-    </ul>
-
-    <h3>❗ Notes</h3>
-    <ul>
-      <li>Works with BepInEx 6.x</li>
-      <li>Works with BepInEx 5.x</li>
-      <li>Works with BepInEx 4.x</li>
-    </ul>
-
-    <h3>🧠 Support</h3>
-    <p>Having issues or questions?<br>Report them in ⁠⟬🚨⟭issues or contact <code>@everyone</code></p>
-
-    <button class="button" onclick="sendWebhookAndDownload()">Download</button>
-    <a class="discord-btn button" href="https://discord.gg/FGBsbdYvrq" target="_blank">
-      <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
-      Discord
-    </a>
-  </div>
-
   <div class="leaning-image-container">
     <img src="https://i.ibb.co/TDkQ9Z37/Capture-removebg-preview-1.png" alt="Decorative" class="leaning-image" id="leanImage">
+  </div>
+
+  <div class="container">
+    <div class="card fade-in">
+      <h1>📦 Release: Mod.gg [ V-0.0.1 ]</h1>
+      <h3>🔗 Download</h3>
+      <p>⬇️ Click the button below to download<br>(Hosted on: GitHub)</p>
+      <button class="button" onclick="sendWebhookAndDownload()">Download</button>
+      <a class="discord-btn button" href="https://discord.gg/FGBsbdYvrq" target="_blank">
+        <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
+        Discord
+      </a>
+    </div>
+
+    <div class="card fade-in">
+      <h3>📃 Description</h3>
+      <ul>
+        <li>Free to use</li>
+        <li>No money needed</li>
+        <li>All mods are UND</li>
+        <li>A unique Menu with a sleek design</li>
+        <li>A GUI with a unique and sleek design</li>
+        <li>A SoundBoard GUI with a unique and sleek design</li>
+        <li>Very easy to use</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <h3>❗ Notes</h3>
+      <ul>
+        <li>Works with BepInEx 6.x</li>
+        <li>Works with BepInEx 5.x</li>
+        <li>Works with BepInEx 4.x</li>
+      </ul>
+    </div>
   </div>
 
   <script>
@@ -165,7 +173,6 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content: '📥 A user has downloaded the menu!' })
       });
-
       window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Mod.gg.dll';
     }
 
@@ -180,7 +187,16 @@
       const rotateY = -(deltaX / rect.width) * 10;
       img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
-  </script>
 
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(card => observer.observe(card));
+  </script>
 </body>
 </html>
