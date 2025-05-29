@@ -10,6 +10,7 @@
       background: black;
       color: white;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body::before {
@@ -35,51 +36,34 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 60px 20px;
-      gap: 40px;
+      padding: 80px 20px;
+      gap: 60px;
       position: relative;
       z-index: 1;
+      max-width: 1200px;
+      margin: auto;
     }
 
-    .card {
-      background-color: #000;
-      border: 2px solid red;
-      border-radius: 20px;
-      padding: 30px 40px;
-      text-align: left;
-      box-shadow: 0 0 15px red;
-      max-width: 600px;
-      width: 100%;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+    .hero {
+      text-align: center;
+      animation: fadeIn 1s ease-in;
     }
 
-    .card.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .hero img {
+      width: 220px;
+      filter: drop-shadow(0 0 15px red);
     }
 
-    .card h1 {
-      color: red;
-      margin-bottom: 10px;
+    .hero h1 {
+      color: white;
+      font-size: 2.8em;
+      margin: 20px 0 10px;
     }
 
-    .card h3 {
-      color: #ff4c4c;
-      margin-top: 20px;
-      margin-bottom: 5px;
-    }
-
-    .card p, .card li {
-      color: #ccc;
-      margin-bottom: 8px;
-      line-height: 1.4;
-    }
-
-    .card ul {
-      padding-left: 20px;
-      margin: 0;
+    .hero p {
+      color: #aaa;
+      font-size: 1.2em;
+      margin-bottom: 30px;
     }
 
     .button, .discord-btn {
@@ -87,7 +71,7 @@
       background-color: red;
       border: none;
       color: white;
-      padding: 12px 24px;
+      padding: 14px 28px;
       font-size: 16px;
       cursor: pointer;
       border-radius: 12px;
@@ -95,7 +79,7 @@
       text-decoration: none;
       min-width: 150px;
       text-align: center;
-      margin: 10px 5px 0;
+      margin: 10px 10px 0;
     }
 
     .button:hover, .discord-btn:hover {
@@ -111,87 +95,116 @@
       margin-right: 8px;
     }
 
-    .leaning-image-container {
-      perspective: 1000px;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      padding-top: 40px;
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      width: 100%;
     }
 
-    .leaning-image {
-      width: 300px;
-      transition: transform 0.1s;
-      transform-style: preserve-3d;
+    .feature-card {
+      border: 2px solid #ff4c4c;
+      border-radius: 20px;
+      padding: 25px;
+      background: #111;
+      text-align: center;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+      color: #ff4c4c;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: #ccc;
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+
+    .notes {
+      border-top: 1px solid #444;
+      padding-top: 40px;
+      width: 100%;
+    }
+
+    .notes h3 {
+      color: #ff4c4c;
+      margin-bottom: 10px;
+    }
+
+    .notes ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .notes li {
+      margin-bottom: 8px;
+      color: #ccc;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="leaning-image-container">
-    <img src="https://i.ibb.co/TDkQ9Z37/Capture-removebg-preview-1.png" alt="Decorative" class="leaning-image" id="leanImage">
-  </div>
-
   <div class="container">
-    <div class="card fade-in">
-      <h1>📦 Release: Mod.gg [ V-0.0.1 ]</h1>
-      <h3>🔗 Download</h3>
-      <p>⬇️ Click the button below to download<br>(Hosted on: GitHub)</p>
-      <button class="button" onclick="downloadOnly()">Download</button>
-      <a class="discord-btn button" href="https://discord.gg/FGBsbdYvrq" target="_blank">
-        <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
-        Discord
-      </a>
-    </div>
+    <!-- Hero -->
+    <section class="hero">
+      <img src="https://i.ibb.co/TDkQ9Z37/Capture-removebg-preview-1.png" alt="Mod.gg Logo">
+      <h1>Mod.gg v0.0.1</h1>
+      <p>Unleash a sleek and powerful modding experience.<br>Easy, fast, and UND.</p>
+      <div>
+        <button class="button" onclick="downloadOnly()">Download</button>
+        <a class="discord-btn button" href="https://discord.gg/FGBsbdYvrq" target="_blank">
+          <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
+          Join Discord
+        </a>
+      </div>
+    </section>
 
-    <div class="card fade-in">
-      <h3>📃 Description</h3>
-      <ul>
-        <li>Free to use</li>
-        <li>No money needed</li>
-        <li>All mods are UND</li>
-        <li>A unique Menu with a sleek design</li>
-        <li>A GUI with a unique and sleek design</li>
-        <li>A SoundBoard GUI with a unique and sleek design</li>
-        <li>Very easy to use</li>
-      </ul>
-    </div>
+    <!-- Features -->
+    <section class="features">
+      <div class="feature-card">
+        <h3>🎨 Sleek GUI</h3>
+        <p>A modern interface designed for clarity and ease of use.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔊 Soundboard</h3>
+        <p>Interactive SoundBoard with built-in .mp3 support and Photon Voice integration.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🆓 100% Free</h3>
+        <p>No payments, no trials. Use it freely and share with others.</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚙️ UND Mods</h3>
+        <p>All included mods are fully UND for stealth and compatibility.</p>
+      </div>
+    </section>
 
-    <div class="card fade-in">
-      <h3>❗ Notes</h3>
+    <!-- Notes -->
+    <section class="notes">
+      <h3>✅ Compatibility</h3>
       <ul>
-        <li>Works with BepInEx 6.x</li>
-        <li>Works with BepInEx 5.x</li>
-        <li>Works with BepInEx 4.x</li>
+        <li>✔️ BepInEx 6.x</li>
+        <li>✔️ BepInEx 5.x</li>
+        <li>✔️ BepInEx 4.x</li>
       </ul>
-    </div>
+    </section>
   </div>
 
   <script>
     function downloadOnly() {
       window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Mod.gg.dll';
     }
-
-    const img = document.getElementById('leanImage');
-    document.addEventListener('mousemove', (e) => {
-      const rect = img.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const deltaX = e.clientX - centerX;
-      const deltaY = e.clientY - centerY;
-      const rotateX = (deltaY / rect.height) * 10;
-      const rotateY = -(deltaX / rect.width) * 10;
-      img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(card => observer.observe(card));
   </script>
 </body>
 </html>
