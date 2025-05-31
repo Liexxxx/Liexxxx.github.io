@@ -2,123 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mod.gg [V-0.0.1] - Download</title>
+  <title>Mod.gg [V-0.0.1]</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
+      padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: black;
+      background: radial-gradient(circle at center, #0d0d0d 0%, #000000 100%);
       color: white;
-      overflow-x: hidden;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: radial-gradient(red 1px, transparent 1px);
       background-size: 20px 20px;
-      animation: moveStars 100s linear infinite;
-      opacity: 0.2;
+      animation: animateStars 120s linear infinite;
       z-index: 0;
+      opacity: 0.15;
     }
 
-    @keyframes moveStars {
+    @keyframes animateStars {
       0% { transform: translate(0, 0); }
-      100% { transform: translate(-100px, -100px); }
+      100% { transform: translate(-50px, -50px); }
     }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 80px 20px;
-      gap: 60px;
-      position: relative;
+    .wrapper {
+      max-width: 1100px;
+      margin: 80px auto;
+      padding: 0 20px;
       z-index: 1;
-      max-width: 1200px;
-      margin: auto;
+      position: relative;
+    }
+
+    .glass-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      padding: 40px 30px;
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.1), 0 0 20px rgba(255, 0, 0, 0.05) inset;
+      margin-bottom: 50px;
     }
 
     .hero {
       text-align: center;
-      animation: fadeIn 1s ease-in;
     }
 
     .hero img {
-      width: 220px;
-      filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.8));
+      width: 200px;
+      filter: drop-shadow(0 0 20px red);
     }
 
     .hero h1 {
-      color: white;
-      font-size: 3em;
+      font-size: 3.5rem;
       margin: 20px 0 10px;
-      text-shadow: 0 0 10px red;
+      color: white;
+      text-shadow: 0 0 15px red;
     }
 
     .hero p {
-      color: rgba(255, 255, 255, 0.75);
-      font-size: 1.3em;
+      font-size: 1.2rem;
+      color: #ccc;
       margin-bottom: 30px;
     }
 
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
     .button, .discord-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #ff4c4c, #ff6666);
-      color: white;
+      background: linear-gradient(to right, #ff4c4c, #ff6666);
       border: none;
-      padding: 14px 30px;
+      color: white;
+      padding: 14px 28px;
       font-size: 16px;
+      border-radius: 40px;
       cursor: pointer;
-      border-radius: 30px;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all 0.3s ease;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
       min-width: 150px;
-      text-align: center;
-      margin: 10px 10px 0;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
     }
 
     .button:hover, .discord-btn:hover {
-      transform: scale(1.06);
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.6), 0 0 10px rgba(255, 0, 0, 0.4) inset;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
     }
 
     .discord-icon {
       width: 20px;
-      height: 20px;
-      filter: brightness(0) invert(1);
-      vertical-align: middle;
       margin-right: 8px;
+      filter: brightness(0) invert(1);
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
     }
 
     .feature-card {
-      backdrop-filter: blur(8px);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 100, 100, 0.3);
-      border-radius: 20px;
-      padding: 25px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 100, 100, 0.2);
+      border-radius: 15px;
+      padding: 20px;
       text-align: center;
-      box-shadow: 0 0 25px rgba(255, 0, 0, 0.2), inset 0 0 10px rgba(255, 0, 0, 0.1);
-      transition: transform 0.2s ease, background 0.3s ease;
+      transition: transform 0.2s;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.05), inset 0 0 5px rgba(255, 0, 0, 0.1);
     }
 
     .feature-card:hover {
       transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .feature-card h3 {
@@ -127,64 +139,68 @@
     }
 
     .feature-card p {
-      color: #ccc;
-      font-size: 0.95em;
-      line-height: 1.5;
+      color: #ddd;
+      font-size: 0.95rem;
     }
 
     .notes, .paid {
-      border-top: 1px solid #444;
-      padding-top: 40px;
-      width: 100%;
+      margin-top: 40px;
     }
 
     .notes h3, .paid h3 {
+      font-size: 1.5rem;
       color: #ff4c4c;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .notes ul, .paid ul {
-      list-style: none;
-      padding-left: 0;
+      padding-left: 20px;
     }
 
     .notes li, .paid li {
+      color: #bbb;
       margin-bottom: 8px;
-      color: #ccc;
     }
 
     .paid {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 100, 100, 0.2);
+      background: rgba(255, 255, 255, 0.04);
+      padding: 25px;
       border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 0 20px rgba(255, 0, 0, 0.15);
-      margin-top: 20px;
+      border: 1px solid rgba(255, 100, 100, 0.15);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    .paid p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    .paid span {
+      color: #ff4c4c;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <section class="hero">
+  <div class="wrapper">
+    <div class="glass-box hero">
       <img src="https://i.ibb.co/TDkQ9Z37/Capture-removebg-preview-1.png" alt="Mod.gg Logo">
       <h1>Mod.gg v0.0.1</h1>
       <p>Unleash a sleek and powerful modding experience.<br>Easy, fast, and UND.</p>
-      <div>
+      <div class="buttons">
         <button class="button" onclick="downloadOnly()">Download</button>
-        <a class="discord-btn button" href="https://discord.gg/FGBsbdYvrq" target="_blank">
+        <a class="discord-btn" href="https://discord.gg/FGBsbdYvrq" target="_blank">
           <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
           Join Discord
         </a>
       </div>
-    </section>
+    </div>
 
-    <section class="features">
+    <div class="glass-box features">
       <div class="feature-card">
         <h3>🎨 Sleek GUI</h3>
         <p>A modern interface designed for clarity and ease of use.</p>
@@ -201,17 +217,18 @@
         <h3>⚙️ UND Mods</h3>
         <p>All included mods are fully UND for stealth and compatibility.</p>
       </div>
-    </section>
-    
-    <section class="notes">
+    </div>
+
+    <div class="glass-box notes">
       <h3>✅ Compatibility</h3>
       <ul>
         <li>✔️ BepInEx 6.x</li>
         <li>✔️ BepInEx 5.x</li>
         <li>✔️ BepInEx 4.x</li>
       </ul>
-    </section>
-    <section class="paid">
+    </div>
+
+    <div class="glass-box paid">
       <h3>💰 Paid Gorilla Tag Mod Menu Templates</h3>
       <p>If you're looking for advanced and polished Gorilla Tag mod menu templates, check out the paid options:</p>
       <ul>
@@ -222,9 +239,9 @@
         <li>✔️ Very Customisable</li>
       </ul>
       <p><strong>Payment Method:</strong> Cash App</p>
-      <p><strong>Send Payment To:</strong> <span style="color: #ff4c4c;">JayJayLXMN</span> via Cash App</p>
+      <p><strong>Send Payment To:</strong> <span>JayJayLXMN</span> via Cash App</p>
       <p><em>After sending payment, DM with proof on Discord for instant delivery.</em></p>
-    </section>
+    </div>
   </div>
 
   <script>
