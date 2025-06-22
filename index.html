@@ -87,28 +87,19 @@
       background: linear-gradient(to right, #005f73, #0a9396);
       border: none;
       color: white;
-      padding: 14px 28px;
+      padding: 14px 32px;
       font-size: 16px;
-      border-radius: 40px;
+      border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: inline-block;
       box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
-      min-width: 150px;
     }
 
     .button:hover, .discord-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
-    }
-
-    .discord-icon {
-      width: 20px;
-      margin-right: 8px;
-      filter: brightness(0) invert(1);
     }
 
     .features {
@@ -124,7 +115,7 @@
       border-radius: 15px;
       padding: 20px;
       text-align: center;
-      transition: transform 0.2s;
+      transition: transform 0.2s, background 0.3s;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.05), inset 0 0 5px rgba(0, 255, 255, 0.1);
     }
 
@@ -189,10 +180,7 @@
       <p>Powerful stealth tools wrapped in elegance.<br>Clean. Fast. Undetected.</p>
       <div class="buttons">
         <button class="button" onclick="downloadOnly()">Download</button>
-        <a class="discord-btn" href="https://discord.gg/FGBsbdYvrq" target="_blank">
-          <img class="discord-icon" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f47e.svg" alt="Discord Icon">
-          Join Discord
-        </a>
+        <a class="discord-btn" href="https://discord.gg/FGBsbdYvrq" target="_blank">Join Discord</a>
       </div>
     </div>
 
