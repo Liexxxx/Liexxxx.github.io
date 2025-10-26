@@ -1,237 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Silent.gg [V-0.0.1]</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspect.gg [V-0.03]</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
-      margin: 0;
-      padding: 0;
+    body {
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at center, #0a0f1a 0%, #000814 100%);
-      color: white;
-      scroll-behavior: smooth;
       overflow-x: hidden;
+      background-color: #0c0c0c;
+      color: #f4f4f4;
     }
 
-    body::before {
-      content: "";
+    /* Fullscreen Interactive Star Background */
+    .background {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(#00808033 1px, transparent 1px);
-      background-size: 25px 25px;
-      animation: animateStars 100s linear infinite;
-      z-index: 0;
-      opacity: 0.08;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #020202;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    @keyframes animateStars {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(-60px, -60px); }
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: starAnimation 50s infinite;
     }
 
-    .wrapper {
-      max-width: 1100px;
-      margin: 80px auto;
-      padding: 0 20px;
-      z-index: 1;
-      position: relative;
+    @keyframes starAnimation {
+      0% {
+        transform: translate(0, 0) scale(0.8);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(400px, 400px) scale(1.2);
+        opacity: 0.3;
+      }
     }
 
-    .glass-box {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(0, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(14px);
-      padding: 40px 30px;
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.08), 0 0 25px rgba(0, 255, 255, 0.05) inset;
-      margin-bottom: 50px;
-    }
-
+    /* Hero Section */
     .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-    }
-
-    .hero img {
-      width: 190px;
-      filter: drop-shadow(0 0 25px #00ffff99);
+      z-index: 1;
+      padding: 20px;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
-      margin: 20px 0 10px;
-      color: #a8f0f0;
-      text-shadow: 0 0 12px #00ffff80;
+      font-size: 4rem;
+      color: #00d9d9;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
     }
 
     .hero p {
-      font-size: 1.2rem;
-      color: #a0cfcf;
-      margin-bottom: 30px;
+      font-size: 1.3rem;
+      color: #b0b0b0;
+      max-width: 700px;
+      margin-bottom: 40px;
     }
 
     .buttons {
       display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+      gap: 25px;
     }
 
-    .button, .discord-btn {
-      background: linear-gradient(to right, #005f73, #0a9396);
+    .button,
+    .discord-btn {
+      padding: 18px 35px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 50px;
       border: none;
-      color: white;
-      padding: 14px 32px;
-      font-size: 16px;
-      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.3);
+      transition: 0.3s ease;
+      text-transform: uppercase;
+      position: relative;
     }
 
-    .button:hover, .discord-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+    .button {
+      background: linear-gradient(to right, #00d9d9, #009999);
+      color: #ffffff;
     }
 
+    .discord-btn {
+      background: linear-gradient(to right, #6a4f4f, #8b6a6a);
+      color: #ffffff;
+    }
+
+    .button:hover,
+    .discord-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+    }
+
+    /* Cards Section */
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 40px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .feature-card {
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid rgba(0, 255, 255, 0.2);
-      border-radius: 15px;
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 30px;
+      transition: 0.3s ease all;
       text-align: center;
-      transition: transform 0.2s, background 0.3s;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.05), inset 0 0 5px rgba(0, 255, 255, 0.1);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+      position: relative;
     }
 
     .feature-card h3 {
+      font-size: 1.7rem;
       color: #00d9d9;
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      color: #cdefff;
-      font-size: 0.95rem;
-    }
-
-    .notes, .paid {
-      margin-top: 40px;
-    }
-
-    .notes h3, .paid h3 {
-      font-size: 1.5rem;
-      color: #00e0e0;
       margin-bottom: 15px;
     }
 
-    .notes li, .paid li {
-      color: #a0dede;
-      margin-bottom: 8px;
+    .feature-card p {
+      color: #f4f4f4;
+      font-size: 1.1rem;
     }
 
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(0, 255, 255, 0.2);
+    }
+
+    /* Paid Section */
     .paid {
-      background: rgba(0, 255, 255, 0.03);
-      padding: 25px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 40px;
       border-radius: 20px;
-      border: 1px solid rgba(0, 255, 255, 0.15);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+
+    .paid h3 {
+      font-size: 2rem;
+      color: #00d9d9;
+      margin-bottom: 25px;
     }
 
     .paid p {
-      color: #9dd9d9;
-      font-size: 0.95rem;
+      color: #b0b0b0;
+      font-size: 1.2rem;
+    }
+
+    .paid ul {
+      margin-top: 20px;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .paid li {
+      color: #f4f4f4;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
     }
 
     .paid span {
       color: #00ffff;
     }
 
-    @media (max-width: 600px) {
+    /* Compatibility Notes Section */
+    .notes {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-top: 40px;
+    }
+
+    .notes h3 {
+      font-size: 1.8rem;
+      color: #00d9d9;
+      margin-bottom: 25px;
+    }
+
+    .notes ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .notes li {
+      color: #f4f4f4;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
       .hero h1 {
         font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="wrapper">
-    <div class="glass-box hero">
-      <img src="https://i.ibb.co/Xf8c81c0/image-removebg-preview-1.png" alt="Silent.gg Logo">
-      <h1>Silent.gg v0.0.1</h1>
-      <p>Powerful stealth tools wrapped in elegance.<br>Clean. Fast. Undetected.</p>
-      <div class="buttons">
-        <button class="button" onclick="downloadOnly()">Download</button>
-        <a class="discord-btn" href="https://discord.gg/FGBsbdYvrq" target="_blank">Join Discord</a>
-      </div>
-    </div>
-
-    <div class="glass-box features">
-      <div class="feature-card">
-        <h3>🧊 Modern Design</h3>
-        <p>A futuristic interface built for speed and beauty.</p>
-      </div>
-      <div class="feature-card">
-        <h3>🎵 Soundboard</h3>
-        <p>Plug & play .mp3 soundboard with Photon Voice support.</p>
-      </div>
-      <div class="feature-card">
-        <h3>🔓 Fully Free</h3>
-        <p>No cost, no limits. Silent.gg is yours to explore.</p>
-      </div>
-      <div class="feature-card">
-        <h3>👻 Undetected Mods</h3>
-        <p>Private & stealth-ready Gorilla Tag mod menus built in.</p>
-      </div>
-    </div>
-
-    <div class="glass-box notes">
-      <h3>🛠️ Compatibility</h3>
-      <ul>
-        <li>✔️ BepInEx 6.x</li>
-        <li>✔️ BepInEx 5.x</li>
-        <li>✔️ BepInEx 4.x</li>
-      </ul>
-    </div>
-
-    <div class="glass-box paid">
-      <h3>💎 Premium Gorilla Tag Menus</h3>
-      <p>Upgrade your experience with our high-end mod templates:</p>
-      <ul>
-        <li>✔️ Custom UI Styles</li>
-        <li>✔️ Easy to Use</li>
-        <li>✔️ Undetected Private Menus</li>
-        <li>✔️ Support Included</li>
-        <li>✔️ Fully Customizable</li>
-      </ul>
-      <p><strong>Payment Method:</strong> Cash App</p>
-      <p><strong>Send Payment To:</strong> <span>JayJayLXMN</span> via Cash App</p>
-      <p><em>After payment, DM us with proof on Discord to receive the files instantly.</em></p>
-    </div>
+  <!-- Background with Starry Constellations -->
+  <div class="background">
+    <div class="star" style="top: 20%; left: 50%; width: 3px; height: 3px; animation-duration: 40s;"></div>
+    <div class="star" style="top: 40%; left: 30%; width: 2px; height: 2px; animation-duration: 35s;"></div>
+    <div class="star" style="top: 60%; left: 70%; width: 4px; height: 4px; animation-duration: 50s;"></div>
+    <div class="star" style="top: 15%; left: 80%; width: 5px; height: 5px; animation-duration: 45s;"></div>
+    <!-- Add more stars as desired -->
   </div>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Inspect.gg v0.0.1</h1>
+    <p>Powerful stealth tools wrapped in elegance.<br> Clean. Fast. Undetected.</p>
+    <div class="buttons">
+      <button class="button" onclick="downloadOnly()">Download</button>
+      <a class="discord-btn" href="https://discord.gg/xXbv8JDpHp" target="_blank">Join Discord</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="feature-card">
+      <h3>🧊 Modern Design</h3>
+      <p>A futuristic interface built for speed and beauty.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🔓 Fully Free</h3>
+      <p>No cost, no limits. Inspect.gg is yours to explore.</p>
+    </div>
+    <div class="feature-card">
+      <h3>👻 Undetected Mods</h3>
+      <p>Private & stealth-ready Gorilla Tag mod menus built in.</p>
+    </div>
+  </section>
+
+  <!-- Paid Section -->
+  <section class="paid">
+    <h3>💎 Premium Gorilla Tag Menus</h3>
+    <p>Upgrade your experience with our high-end mod templates:</p>
+    <ul>
+      <li>✔️ Custom UI Styles</li>
+      <li>✔️ Easy to Use</li>
+      <li>✔️ Undetected Private Menus</li>
+      <li>✔️ Support Included</li>
+      <li>✔️ Fully Customizable</li>
+    </ul>
+    <p><strong>Payment Method:</strong> Cash App</p>
+    <p><strong>Send Payment To:</strong> <span>JayJayLXMN</span> via Cash App</p>
+    <p><em>After payment, DM us with proof on Discord to receive the files instantly.</em></p>
+  </section>
+
+  <!-- Compatibility Notes Section -->
+  <section class="notes">
+    <h3>🛠️ Compatibility</h3>
+    <ul>
+      <li>✔️ BepInEx 6.x</li>
+      <li>✔️ BepInEx 5.x</li>
+      <li>✔️ BepInEx 4.x</li>
+    </ul>
+  </section>
 
   <script>
     function downloadOnly() {
-      window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Silent.gg.dll';
+      window.location.href = 'https://github.com/silentggontop-cell/Inpsect.gg.github.io/raw/refs/heads/main/Inspect.gg.dll';
     }
   </script>
 </body>
+
 </html>
