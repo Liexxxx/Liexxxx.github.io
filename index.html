@@ -79,7 +79,106 @@
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px}
     .modal{max-width:720px;width:100%}
     .modal.show{display:flex}
-  </style>
+    /* Animations */
+    @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
+    @keyframes scaleIn {0%{opacity:0;transform:scale(.85);}100%{opacity:1;transform:scale(1);}}
+    @keyframes floatStar {0%{transform:translateY(0);}100%{transform:translateY(-40px);} }
+
+    .btn{transition:transform .18s ease, box-shadow .18s ease;}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.25);}    
+
+    .card{animation:fadeInUp .6s ease;}    
+    .hero-left h2, .hero-left p, .eyebrow, .ctas{animation:fadeInUp .7s ease;} 
+
+    #betaModal.showAnim > div{animation:scaleIn .35s ease;}    
+
+  /* Global fade-in for entire page */
+  body {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Smooth section reveal */
+  section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: sectionReveal 0.9s ease-out forwards;
+  }
+  section:nth-child(1) { animation-delay: 0.1s; }
+  section:nth-child(2) { animation-delay: 0.2s; }
+  section:nth-child(3) { animation-delay: 0.3s; }
+  section:nth-child(4) { animation-delay: 0.4s; }
+
+  /* Buttons – pulse + lift */
+  .btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: softPop 0.9s ease forwards;
+  }
+  .btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  /* Cards – float + fade */
+  .card {
+    opacity: 0;
+    transform: translateY(25px);
+    animation: cardFloat 1s ease-out forwards;
+  }
+  .card:nth-child(1) { animation-delay: 0.15s; }
+  .card:nth-child(2) { animation-delay: 0.3s; }
+  .card:nth-child(3) { animation-delay: 0.45s; }
+
+  /* Modal – scale pop */
+  .modal {
+    opacity: 0;
+    transform: scale(0.9);
+    animation: modalPop 0.35s ease-out forwards;
+  }
+
+  /* Stars or floating accents */
+  .floating-star {
+    animation: starFloat 4s ease-in-out infinite;
+  }
+  .floating-star:nth-child(odd) {
+    animation-duration: 5s;
+  }
+
+  /* ==================== Animations ==================== */
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes sectionReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes softPop {
+    0% { transform: scale(0.96); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes cardFloat {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes modalPop {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes starFloat {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+  }
+</style>
 </head>
 <body>
   <div class="stars" aria-hidden>
@@ -159,10 +258,10 @@
         <p class="loader-list">Get a polished, private loader with automatic updates, custom UI skins, and priority support. Delivered after payment via Discord DM.</p>
 
         <ul style="margin-top:12px;color:var(--muted);padding-left:18px">
-          <li>• Private loader</li>
-          <li>• Custom skins</li>
-          <li>• Pre made injection method (Optional)</li>
-          <li>• Pre mad key authentication </li>
+          <li>• Private loader binary</li>
+          <li>• Custom menu skins</li>
+          <li>• Priority install support</li>
+          <li>• Optional bespoke UI work available</li>
         </ul>
       </div>
 
@@ -221,7 +320,7 @@
   <div id="modal" class="modal-backdrop">
     <div class="modal card">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-        <h3 style="margin:0">Coming soon..</h3>
+        <h3 style="margin:0">Buy Premium Loader</h3>
         <button class="btn ghost" onclick="closeModal()">Close</button>
       </div>
 
@@ -276,6 +375,7 @@
   </script>
 </body>
 </html>
+
 <div id="betaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); justify-content:center; align-items:center;">
   <div style="background:#111; padding:25px; border-radius:20px; width:420px; color:white; font-family:Poppins;">
     <h2 style="margin-top:0;">Beta Tester Application</h2>
