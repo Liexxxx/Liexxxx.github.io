@@ -176,6 +176,7 @@ footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 </footer>
 </main>
 
+<!-- PREMIUM MODAL -->
 <div id="modal" class="modal-backdrop">
 <div class="modal card">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
@@ -190,14 +191,20 @@ footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 </div>
 </div>
 
+<!-- UPDATED BETA APPLICATION MODAL -->
 <div id="beta-modal" class="modal-backdrop">
-<div class="modal card" style="padding:24px">
+<div class="modal card" style="padding:24px;max-width:650px">
 <h3 style="margin:0 0 12px">Beta Application</h3>
+
 <label>Discord Username</label>
 <input id="betaDiscord" class="input" placeholder="Your Discord">
 
-<label style="margin-top:14px">Why do you want beta?</label>
-<textarea id="betaReason" class="input" style="height:120px" placeholder="Describe your reason..."></textarea>
+<label style="margin-top:14px">Your Age</label>
+<input id="betaAge" type="number" class="input" placeholder="Age">
+
+<label style="margin-top:14px">Why should you be a beta tester?</label>
+<textarea id="betaReason" class="input" style="height:140px"
+  placeholder="Explain why you want beta access..."></textarea>
 
 <button class="btn primary" style="margin-top:18px" onclick="sendBeta()">Submit Application</button>
 <button class="btn ghost" style="margin-top:10px" onclick="closeBeta()">Close</button>
@@ -215,12 +222,49 @@ function openBeta(){document.getElementById('beta-modal').classList.add('show')}
 function closeBeta(){document.getElementById('beta-modal').classList.remove('show')}
 
 function sendBeta(){
-let d=document.getElementById('betaDiscord').value.trim()
-let r=document.getElementById('betaReason').value.trim()
-if(!d||!r){alert("Fill out all fields.");return}
-let msg=`Beta Application:%0A%0ADiscord: ${d}%0AReason: ${r}`
-window.open(`https://discord.com/users/0?message=${msg}`,'_blank')
-alert("Application copied to Discord. Paste & send.")
+    let d=document.getElementById('betaDiscord').value.trim();
+    let a=document.getElementById('betaAge').value.trim();
+    let r=document.getElementById('betaReason').value.trim();
+
+    if(!d||!a||!r){
+        alert("Please fill out all fields.");
+        return;
+    }
+
+    // Base64 encoded webhook
+    let webhook = atob(
+        "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ0NDAwNzA3Njg3NDU1MTM1Ny9oUEVfUUswZzg3YzRlQ1ljVEZoSDBPR2lIbTg1MmxmYlVxX1VhR005d3cyZW5xcXFBWW5vMEZMRVhqUk1BYTFpcTBPeg=="
+    );
+
+    let payload = {
+        username: "Beta Application",
+        embeds: [{
+            title: "New Beta Application",
+            color: 3447003,
+            fields: [
+                { name: "Discord", value: d },
+                { name: "Age", value: a },
+                { name: "Reason", value: r }
+            ]
+        }]
+    };
+
+    fetch(webhook, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        alert("Application submitted!");
+        closeBeta();
+        document.getElementById('betaDiscord').value="";
+        document.getElementById('betaAge').value="";
+        document.getElementById('betaReason').value="";
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Failed to send application.");
+    });
 }
 </script>
 
