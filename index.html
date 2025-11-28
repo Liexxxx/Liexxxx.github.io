@@ -6,6 +6,7 @@
 <title>Inspect.gg — v6.0.0</title>
 <meta name="description" content="Inspect.gg — sleek, stealth-ready Gorilla Tag tools">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{--bg:#070707;--card:#0f1314;--accent:#00d9d9;--muted:#9aa3a3;--glass:rgba(255,255,255,0.04);--cash-green:#00C244;--max-width:1100px;}
 *{box-sizing:border-box}
@@ -21,41 +22,61 @@ nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0}
 nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:10px}
 nav a:hover{color:#fff;background:rgba(255,255,255,0.02)}
 .primary{background:linear-gradient(90deg,var(--accent),#009999);padding:10px 16px;border-radius:12px;color:#001;font-weight:700}
+
 .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:64px 0}
 .hero-left h2{font-size:40px;margin:0 0 16px;line-height:1.02;color:#fff}
 .eyebrow{display:inline-block;background:rgba(0,217,217,0.06);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:12px}
 .hero-left p{color:var(--muted);font-size:16px;margin-bottom:20px}
 .ctas{display:flex;gap:14px;flex-wrap:wrap}
+
 .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 .btn.primary{background:linear-gradient(90deg,var(--accent),#009999);color:#001}
+
 .card{background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.02));padding:22px;border-radius:14px;box-shadow:0 8px 30px rgba(2,16,18,0.6);border:1px solid rgba(255,255,255,0.03)}
+
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
 .feature{padding:18px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent);border:1px solid rgba(255,255,255,0.02)}
 .feature h4{margin:0 0 8px;color:var(--accent)}
 .feature p{margin:0;color:var(--muted);font-size:14px}
+
 .paid-section{margin-top:44px;display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:start}
 .paid-hero{padding:24px;border-radius:14px;background:linear-gradient(90deg,rgba(0,217,217,0.03),transparent);border:1px solid rgba(0,217,217,0.06)}
 .price-badge{font-size:32px;font-weight:800;color:#fff}
 .loader-list{margin-top:12px;color:var(--muted)}
+
 .pay-card{padding:18px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.02)}
-.cash-row{display:flex;align-items:center;gap:12px}
 .cash-logo{width:56px;height:56px;border-radius:12px;background:var(--cash-green);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(0,194,68,0.14)}
+
 .compat{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
 .chip{background:var(--glass);padding:10px 14px;border-radius:999px;color:var(--muted);font-weight:700}
+
 footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
-@media(max-width:1000px){.hero{grid-template-columns:1fr}.paid-section{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){.features{grid-template-columns:1fr}.nav{flex-direction:column;align-items:flex-start}.hero-left h2{font-size:28px}}
+
+@media(max-width:1000px){
+.hero{grid-template-columns:1fr}
+.paid-section{grid-template-columns:1fr}
+.features{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+.features{grid-template-columns:1fr}
+.nav{flex-direction:column;align-items:flex-start}
+.hero-left h2{font-size:28px}
+}
+
 .stars{position:fixed;inset:0;pointer-events:none;z-index:0}
 .star{position:absolute;background:linear-gradient(180deg,#ffffff66,#ffffff22);opacity:0.7;border-radius:50%;filter:blur(0.6px)}
+
 .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
-.modal{max-width:720px;width:100%}
 .modal.show{display:flex}
+.modal{max-width:720px;width:100%}
+
 .input{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:#fff;margin-top:8px}
 </style>
 </head>
 <body>
 
+<!-- STARS BG -->
 <div class="stars" aria-hidden>
 <div class="star" style="width:2px;height:2px;left:12%;top:22%;animation:float 30s linear infinite"></div>
 <div class="star" style="width:3px;height:3px;left:68%;top:10%;animation:float 60s linear infinite"></div>
@@ -71,6 +92,7 @@ footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 <div style="font-size:12px;color:var(--muted);margin-top:2px">v6.0.0 — stealth & style</div>
 </div>
 </div>
+
 <nav>
 <ul>
 <li><a href="#features">Features</a></li>
@@ -83,42 +105,47 @@ footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 </div>
 </header>
 
-<main class="container" role="main">
+<main class="container">
 
 <section class="hero">
 <div class="hero-left">
+
 <span class="eyebrow">Undetected • Private</span>
 <h2>Powerful, stealthy Gorilla Tag tools — now sleeker.</h2>
+
 <p>Create a cleaner, faster session with Inspect.gg. Lightweight DLLs, private menus, and optional premium loaders for advanced custom UIs.</p>
 
 <div class="ctas">
 <button class="btn primary" onclick="openBeta()">Apply for beta</button>
-<button class="btn ghost" onclick="openModal()">Coming soon..</button>
+<button class="btn ghost">Coming soon..</button>
 </div>
 
-<div class="features" id="features" style="margin-top:22px">
+<div class="features" id="features">
 <div class="feature card">
 <h4>Modern UI</h4>
-<p>Sleek, minimal, and fast interfaces that won't weigh you down.</p>
+<p>Sleek, minimal, and fast interfaces.</p>
 </div>
 <div class="feature card">
 <h4>Undetected</h4>
-<p>Built with stealth in mind — developed for private use.</p>
+<p>Built with stealth in mind.</p>
 </div>
 <div class="feature card">
 <h4>Customizable</h4>
-<p>Templates and support to tailor menus exactly how you like them.</p>
-</div>
+<p>Make menus exactly how you want.</p>
 </div>
 </div>
 
-<aside class="card" style="align-self:start">
+</div>
+
+<aside class="card">
 <h3 style="margin:0 0 8px">Quick Info</h3>
 <div style="color:var(--muted);font-size:14px">Version <strong>6.0.0</strong></div>
+
 <div style="margin-top:12px">
 <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:13px"><span>Menu Type</span><span>Free</span></div>
 <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-top:8px"><span>Support</span><span>Discord</span></div>
 </div>
+
 <div style="margin-top:18px;display:flex;gap:8px">
 <a class="btn ghost" href="#compat">Compatibility</a>
 <a class="btn primary" id="dl-btn" href="https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Inspect.gg.dll">Download DLL</a>
@@ -130,17 +157,18 @@ footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 <div class="paid-hero card">
 <h3 style="margin:0 0 6px">Premium Loader — One-time</h3>
 <div class="price-badge">$12.00</div>
-<p class="loader-list">Get a polished, private loader with automatic updates, custom UI skins, and priority support.</p>
+<p class="loader-list">Get a polished, private loader with automatic updates, custom skins, and more.</p>
 <ul style="margin-top:12px;color:var(--muted);padding-left:18px">
-<li>• Private/Public loader (Preference Based)</li>
-<li>• Sleek Loader designs</li>
-<li>• Custom Key Authentication</li>
-<li>• Pre-made injection method (Optional)</li>
+<li>• Private/Public loader</li>
+<li>• Sleek UI</li>
+<li>• Key authentication</li>
+<li>• Built-in injection (optional)</li>
 </ul>
 </div>
 
 <div class="pay-card card">
 <h4 style="margin:0 0 10px">Payment</h4>
+
 <div style="display:flex;gap:12px;align-items:center;">
 <div class="cash-logo"></div>
 <div>
@@ -149,51 +177,36 @@ footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 <div style="margin-top:6px;font-weight:800">$JayJayLXMN</div>
 </div>
 </div>
-<div style="margin-top:14px;color:var(--muted);font-size:13px">After payment: DM proof on Discord and include your username.</div>
+
+<div style="margin-top:14px;color:var(--muted);font-size:13px">After payment: DM proof on Discord + your username.</div>
+
 <div style="margin-top:16px;display:flex;gap:10px">
-<button class="btn primary" onclick="copyCashTag()">Copy Cash App Tag</button>
-<button class="btn ghost" onclick="openDiscord()">Open Discord</button>
+<button class="btn primary" onclick="navigator.clipboard.writeText('$JayJayLXMN')">Copy Tag</button>
+<button class="btn ghost" onclick="open('https://discord.gg/xXbv8JDpHp')">Open Discord</button>
 </div>
+
 </div>
 </section>
 
 <section id="compat" style="margin-top:28px">
 <h3>Compatibility</h3>
 <div class="compat">
-<div class="chip">BepInEx 6.x</div>
-<div class="chip">BepInEx 5.x</div>
-<div class="chip">BepInEx 4.x</div>
+<div class="chip">BepInEx 6</div>
+<div class="chip">BepInEx 5</div>
 <div class="chip">Unity 2021+</div>
 </div>
-<div style="margin-top:18px;color:var(--muted);font-size:14px">If you need help installing, reach out on Discord.</div>
 </section>
 
 <footer>
-<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center">
-<div>© Inspect.gg — Private tools for personal use.</div>
-<div style="color:var(--muted)">Made with care • <a href="#" style="color:var(--muted);text-decoration:underline">Terms</a> • <a href="#" style="color:var(--muted);text-decoration:underline">Privacy</a></div>
-</div>
+© Inspect.gg — Private tools for personal use.
 </footer>
+
 </main>
 
-<!-- PREMIUM MODAL -->
-<div id="modal" class="modal-backdrop">
-<div class="modal card">
-<div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-<h3 style="margin:0">Buy Premium Loader</h3>
-<button class="btn ghost" onclick="closeModal()">Close</button>
-</div>
-<div style="margin-top:12px;display:flex;gap:18px;align-items:flex-start">
-<div style="flex:1">
-<p style="color:var(--muted)">One-time purchase of <strong>$12</strong>.</p>
-</div>
-</div>
-</div>
-</div>
-
-<!-- UPDATED BETA APPLICATION MODAL -->
+<!-- ———————————— BETA MODAL ONLY ———————————— -->
 <div id="beta-modal" class="modal-backdrop">
 <div class="modal card" style="padding:24px;max-width:650px">
+
 <h3 style="margin:0 0 12px">Beta Application</h3>
 
 <label>Discord Username</label>
@@ -203,21 +216,15 @@ footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 <input id="betaAge" type="number" class="input" placeholder="Age">
 
 <label style="margin-top:14px">Why should you be a beta tester?</label>
-<textarea id="betaReason" class="input" style="height:140px"
-  placeholder="Explain why you want beta access..."></textarea>
+<textarea id="betaReason" class="input" style="height:140px" placeholder="Explain why..."></textarea>
 
 <button class="btn primary" style="margin-top:18px" onclick="sendBeta()">Submit Application</button>
 <button class="btn ghost" style="margin-top:10px" onclick="closeBeta()">Close</button>
+
 </div>
 </div>
 
 <script>
-function scrollToSection(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'})}
-function openModal(){document.getElementById('modal').classList.add('show')}
-function closeModal(){document.getElementById('modal').classList.remove('show')}
-function copyCashTag(){navigator.clipboard&&navigator.clipboard.writeText('$JayJayLXMN').then(()=>{alert('Copied: $JayJayLXMN')})}
-function openDiscord(){window.open('https://discord.gg/xXbv8JDpHp','_blank')}
-
 function openBeta(){document.getElementById('beta-modal').classList.add('show')}
 function closeBeta(){document.getElementById('beta-modal').classList.remove('show')}
 
@@ -226,44 +233,35 @@ function sendBeta(){
     let a=document.getElementById('betaAge').value.trim();
     let r=document.getElementById('betaReason').value.trim();
 
-    if(!d||!a||!r){
-        alert("Please fill out all fields.");
-        return;
-    }
+    if(!d||!a||!r){ alert("Fill out all fields."); return; }
 
-    // Base64 encoded webhook
-    let webhook = atob(
-        "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ0NDAwNzA3Njg3NDU1MTM1Ny9oUEVfUUswZzg3YzRlQ1ljVEZoSDBPR2lIbTg1MmxmYlVxX1VhR005d3cyZW5xcXFBWW5vMEZMRVhqUk1BYTFpcTBPeg=="
-    );
+    let webhook = atob("aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ0NDAwNzA3Njg3NDU1MTM1Ny9oUEVfUUswZzg3YzRlQ1ljVEZoSDBPR2lIbTg1MmxmYlVxX1VhR005d3cyZW5xcXFBWW5vMEZMRVhqUk1BYTFpcTBPeg==");
 
     let payload = {
-        username: "Beta Application",
-        embeds: [{
-            title: "New Beta Application",
-            color: 3447003,
-            fields: [
-                { name: "Discord", value: d },
-                { name: "Age", value: a },
-                { name: "Reason", value: r }
+        username:"Beta Application",
+        embeds:[{
+            title:"New Beta Application",
+            color:3447003,
+            fields:[
+                {name:"Discord",value:d},
+                {name:"Age",value:a},
+                {name:"Reason",value:r}
             ]
         }]
     };
 
-    fetch(webhook, {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(payload)
-    })
-    .then(() => {
+    fetch(webhook,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(payload)
+    }).then(()=>{
         alert("Application submitted!");
         closeBeta();
-        document.getElementById('betaDiscord').value="";
-        document.getElementById('betaAge').value="";
-        document.getElementById('betaReason').value="";
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Failed to send application.");
+        betaDiscord.value="";
+        betaAge.value="";
+        betaReason.value="";
+    }).catch(()=>{
+        alert("Failed to send.");
     });
 }
 </script>
