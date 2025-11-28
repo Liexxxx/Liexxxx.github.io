@@ -1,288 +1,278 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inspect.gg [V-6.0.0]</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Inspect.gg — v6.0.0</title>
+  <meta name="description" content="Inspect.gg — sleek, stealth-ready Gorilla Tag tools">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root{
+      --bg:#070707;
+      --card:#0f1314;
+      --accent:#00d9d9;
+      --muted:#9aa3a3;
+      --glass: rgba(255,255,255,0.04);
+      --cash-green: #00C244;
+      --max-width:1100px;
     }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg,#050505 0%, #071014 60%);
+      color:#e9f0ef; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+    header{position:sticky;top:12px;z-index:60}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#007a7a);display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 6px 24px rgba(0,217,217,0.06)}
+    .brand h1{font-size:18px;margin:0}
+    nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:10px}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+    .primary{background:linear-gradient(90deg,var(--accent),#009999);padding:10px 16px;border-radius:12px;color:#001; font-weight:700}
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      background-color: #0c0c0c;
-      color: #f4f4f4;
-    }
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:64px 0}
+    .hero-left h2{font-size:40px;margin:0 0 16px;line-height:1.02;color:#fff}
+    .eyebrow{display:inline-block;background:rgba(0,217,217,0.06);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:12px}
+    .hero-left p{color:var(--muted);font-size:16px;margin-bottom:20px}
+    .ctas{display:flex;gap:14px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#009999);color:#001}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:22px;border-radius:14px;box-shadow:0 8px 30px rgba(2,16,18,0.6);border:1px solid rgba(255,255,255,0.03)}
 
-    /* Fullscreen Interactive Star Background */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #020202;
-      z-index: -1;
-      pointer-events: none;
-    }
+    /* Features grid */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .feature{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.02)}
+    .feature h4{margin:0 0 8px;color:var(--accent)}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
 
-    .star {
-      position: absolute;
-      background-color: white;
-      border-radius: 50%;
-      opacity: 0.8;
-      animation: starAnimation 50s infinite;
-    }
+    /* Paid loader section */
+    .paid-section{margin-top:44px;display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:start}
+    .paid-hero{padding:24px;border-radius:14px;background:linear-gradient(90deg, rgba(0,217,217,0.03), transparent);border:1px solid rgba(0,217,217,0.06)}
+    .price-badge{font-size:32px;font-weight:800;color:#fff}
+    .loader-list{margin-top:12px;color:var(--muted)}
+    .pay-card{padding:18px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.02)}
+    .cash-row{display:flex;align-items:center;gap:12px}
+    .cash-logo{width:56px;height:56px;border-radius:12px;background:var(--cash-green);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(0,194,68,0.14)}
 
-    @keyframes starAnimation {
-      0% {
-        transform: translate(0, 0) scale(0.8);
-        opacity: 0.8;
-      }
-      100% {
-        transform: translate(400px, 400px) scale(1.2);
-        opacity: 0.3;
-      }
-    }
+    /* Compatibility */
+    .compat{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+    .chip{background:var(--glass);padding:10px 14px;border-radius:999px;color:var(--muted);font-weight:700}
 
-    /* Hero Section */
-    .hero {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 1;
-      padding: 20px;
-    }
+    footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
 
-    .hero h1 {
-      font-size: 4rem;
-      color: #00d9d9;
-      margin-bottom: 20px;
-      text-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-    }
+    /* Responsive */
+    @media (max-width:1000px){.hero{grid-template-columns:1fr}.paid-section{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.features{grid-template-columns:1fr}.nav{flex-direction:column;align-items:flex-start}.hero-left h2{font-size:28px}}
 
-    .hero p {
-      font-size: 1.3rem;
-      color: #b0b0b0;
-      max-width: 700px;
-      margin-bottom: 40px;
-    }
+    /* subtle floating stars */
+    .stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+    .star{position:absolute;background:linear-gradient(180deg,#ffffff66,#ffffff22);opacity:0.7;border-radius:50%;filter:blur(0.6px);}
 
-    .buttons {
-      display: flex;
-      gap: 25px;
-    }
-
-    .button,
-    .discord-btn {
-      padding: 18px 35px;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s ease;
-      text-transform: uppercase;
-      position: relative;
-    }
-
-    .button {
-      background: linear-gradient(to right, #00d9d9, #009999);
-      color: #ffffff;
-    }
-
-    .discord-btn {
-      background: linear-gradient(to right, #6a4f4f, #8b6a6a);
-      color: #ffffff;
-    }
-
-    .button:hover,
-    .discord-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 40px;
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .feature-card {
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 30px;
-      transition: 0.3s ease all;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
-      position: relative;
-    }
-
-    .feature-card h3 {
-      font-size: 1.7rem;
-      color: #00d9d9;
-      margin-bottom: 15px;
-    }
-
-    .feature-card p {
-      color: #f4f4f4;
-      font-size: 1.1rem;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-10px);
-      background: rgba(0, 255, 255, 0.2);
-    }
-    .paid {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
-      margin: 40px auto;
-      max-width: 1200px;
-    }
-
-    .paid h3 {
-      font-size: 2rem;
-      color: #00d9d9;
-      margin-bottom: 25px;
-    }
-
-    .paid p {
-      color: #b0b0b0;
-      font-size: 1.2rem;
-    }
-
-    .paid ul {
-      margin-top: 20px;
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .paid li {
-      color: #f4f4f4;
-      font-size: 1.2rem;
-      margin-bottom: 15px;
-    }
-
-    .paid span {
-      color: #00ffff;
-    }
-
-    /* Compatibility Notes Section */
-    .notes {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 40px;
-      border-radius: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      margin-top: 40px;
-    }
-
-    .notes h3 {
-      font-size: 1.8rem;
-      color: #00d9d9;
-      margin-bottom: 25px;
-    }
-    .notes ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .notes li {
-      color: #f4f4f4;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .features {
-        grid-template-columns: 1fr;
-      }
-      .buttons {
-        flex-direction: column;
-      }
-    }
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal{max-width:720px;width:100%}
+    .modal.show{display:flex}
   </style>
 </head>
 <body>
-  <div class="background">
-    <div class="star" style="top: 20%; left: 50%; width: 3px; height: 3px; animation-duration: 40s;"></div>
-    <div class="star" style="top: 40%; left: 30%; width: 2px; height: 2px; animation-duration: 35s;"></div>
-    <div class="star" style="top: 60%; left: 70%; width: 4px; height: 4px; animation-duration: 50s;"></div>
-    <div class="star" style="top: 15%; left: 80%; width: 5px; height: 5px; animation-duration: 45s;"></div>
+  <div class="stars" aria-hidden>
+    <div class="star" style="width:2px;height:2px;left:12%;top:22%;animation:float 30s linear infinite"></div>
+    <div class="star" style="width:3px;height:3px;left:68%;top:10%;animation:float 60s linear infinite"></div>
+    <div class="star" style="width:4px;height:4px;left:40%;top:72%;animation:float 50s linear infinite"></div>
   </div>
-  <section class="hero">
-    <h1>Inspect.gg v6.0.0</h1>
-    <p>Powerful stealth tools wrapped in elegance.<br> Clean. Fast. Undetected.</p>
-    <div class="buttons">
-      <button class="button" onclick="downloadOnly()">Download</button>
-      <a class="discord-btn" href="https://discord.gg/xXbv8JDpHp" target="_blank">Join Discord</a>
-    </div>
-  </section>
-  <section class="features">
-    <div class="feature-card">
-      <h3>🧊 Modern Design</h3>
-      <p>A futuristic interface built for speed and beauty.</p>
-    </div>
-    <div class="feature-card">
-      <h3>🔓 Fully Free</h3>
-      <p>No cost, no limits. Inspect.gg is yours to explore.</p>
-    </div>
-    <div class="feature-card">
-      <h3>👻 Undetected Mods</h3>
-      <p>Private & stealth-ready Gorilla Tag mod menus built in.</p>
-    </div>
-  </section>
 
-  <!-- Paid Section -->
-  <section class="paid">
-    <h3>💎 Premium Gorilla Tag Menus</h3>
-    <p>Upgrade your experience with our high-end mod templates:</p>
-    <ul>
-      <li>✔️ Custom UI Styles</li>
-      <li>✔️ Easy to Use</li>
-      <li>✔️ Undetected Private Menus</li>
-      <li>✔️ Support Included</li>
-      <li>✔️ Fully Customizable</li>
-    </ul>
-    <p><strong>Payment Method:</strong> Cash App</p>
-    <p><strong>Send Payment To:</strong> <span>JayJayLXMN</span> via Cash App</p>
-    <p><em>After payment, DM us with proof on Discord to receive the files instantly.</em></p>
-  </section>
+  <header class="container">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">IG</div>
+        <div>
+          <h1>Inspect.gg</h1>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">v6.0.0 — stealth & style</div>
+        </div>
+      </div>
 
-  <!-- Compatibility Notes Section -->
-  <section class="notes">
-    <h3>🛠️ Compatibility</h3>
-    <ul>
-      <li>✔️ BepInEx 6.x</li>
-      <li>✔️ BepInEx 5.x</li>
-      <li>✔️ BepInEx 4.x</li>
-    </ul>
-  </section>
+      <nav>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#paid">Paid Loader</a></li>
+          <li><a href="#compat">Compatibility</a></li>
+          <li><a href="#download" class="primary">Download</a></li>
+          <li><a href="https://discord.gg/xXbv8JDpHp" target="_blank">Discord</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <section class="hero">
+      <div class="hero-left">
+        <span class="eyebrow">Undetected • Private</span>
+        <h2>Powerful, stealthy Gorilla Tag tools — now sleeker.</h2>
+        <p>Create a cleaner, faster session with Inspect.gg. Lightweight DLLs, private menus, and optional premium loaders for advanced custom UIs.</p>
+        <div class="ctas">
+          <button class="btn primary" onclick="scrollToSection('download')">Download DLL</button>
+          <button class="btn ghost" onclick="openModal()">Buy Premium Loader</button>
+        </div>
+
+        <div class="features" id="features" style="margin-top:22px">
+          <div class="feature card">
+            <h4>Modern UI</h4>
+            <p>Sleek, minimal, and fast interfaces that won't weigh you down.</p>
+          </div>
+          <div class="feature card">
+            <h4>Undetected</h4>
+            <p>Built with stealth in mind — developed for private use.</p>
+          </div>
+          <div class="feature card">
+            <h4>Customizable</h4>
+            <p>Templates and support to tailor menus exactly how you like them.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card" style="align-self:start">
+        <h3 style="margin:0 0 8px">Quick Info</h3>
+        <div style="color:var(--muted);font-size:14px">Version <strong>6.0.0</strong></div>
+        <div style="margin-top:12px">
+          <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:13px"><span>Loader</span><span>Optional Premium</span></div>
+          <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-top:8px"><span>Support</span><span>Discord</span></div>
+        </div>
+        <div style="margin-top:18px;display:flex;gap:8px">
+          <a class="btn ghost" href="#compat">Compatibility</a>
+          <a class="btn primary" id="dl-btn" href="https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Inspect.gg.dll">Download DLL</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Paid Loader Section -->
+    <section id="paid" class="paid-section">
+      <div class="paid-hero card">
+        <h3 style="margin:0 0 6px">Premium Loader — One-time</h3>
+        <div class="price-badge">$12.00</div>
+        <p class="loader-list">Get a polished, private loader with automatic updates, custom UI skins, and priority support. Delivered after payment via Discord DM.</p>
+
+        <ul style="margin-top:12px;color:var(--muted);padding-left:18px">
+          <li>• Private loader binary</li>
+          <li>• Custom menu skins</li>
+          <li>• Priority install support</li>
+          <li>• Optional bespoke UI work available</li>
+        </ul>
+      </div>
+
+      <div class="pay-card card">
+        <h4 style="margin:0 0 10px">Payment</h4>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <div class="cash-logo" aria-hidden>
+            <!-- Inline Cash App-like square with $ symbol -->
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              <rect width="24" height="24" rx="6" fill="white" opacity="0.12"></rect>
+              <path d="M12 6c1.657 0 3 1.343 3 3 0 1.657-1.343 3-3 3s-3 1.343-3 3 1.343 3 3 3" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14.5 7.5h-5v9h5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <div>
+            <div style="font-weight:800">Cash App</div>
+            <div style="color:var(--muted);">Send $12 to:</div>
+            <div style="margin-top:6px;font-weight:800">$JayJayLXMN</div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;color:var(--muted);font-size:13px">After payment: DM proof on Discord and include your Discord username. Files will be delivered instantly via DM.</div>
+
+        <div style="margin-top:16px;display:flex;gap:10px">
+          <button class="btn primary" onclick="copyCashTag()">Copy Cash App Tag</button>
+          <button class="btn ghost" onclick="openDiscord()">Open Discord</button>
+        </div>
+
+        <div style="margin-top:14px;color:var(--muted);font-size:13px">We recommend sending the exact amount and including your Discord handle with the payment note.</div>
+      </div>
+    </section>
+
+    <!-- Compatibility -->
+    <section id="compat" style="margin-top:28px">
+      <h3>Compatibility</h3>
+      <div class="compat">
+        <div class="chip">BepInEx 6.x</div>
+        <div class="chip">BepInEx 5.x</div>
+        <div class="chip">BepInEx 4.x</div>
+        <div class="chip">Unity 2021+</div>
+      </div>
+
+      <div style="margin-top:18px;color:var(--muted);font-size:14px">If you have a custom environment or need help installing, reach out on Discord for guided support.</div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center">
+        <div>© Inspect.gg — Private tools for personal use. Use responsibly.</div>
+        <div style="color:var(--muted)">Made with care • <a href="#" style="color:var(--muted);text-decoration:underline">Terms</a> • <a href="#" style="color:var(--muted);text-decoration:underline">Privacy</a></div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal-backdrop">
+    <div class="modal card">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+        <h3 style="margin:0">Buy Premium Loader</h3>
+        <button class="btn ghost" onclick="closeModal()">Close</button>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:1">
+          <p style="color:var(--muted)">One-time purchase of <strong>$12</strong>. Includes private loader, installer guide, and setup support on Discord.</p>
+
+          <ol style="color:var(--muted);padding-left:18px">
+            <li>Send payment to <strong>$JayJayLXMN</strong> on Cash App</li>
+            <li>DM proof and your Discord username</li>
+            <li>Receive loader files via Discord DM</li>
+          </ol>
+        </div>
+
+        <div style="width:260px" class="card">
+          <div class="cash-row"><div class="cash-logo"></div>
+            <div>
+              <div style="font-weight:800">Cash App</div>
+              <div style="color:var(--muted)">Tag</div>
+              <div style="margin-top:6px;font-weight:800">$JayJayLXMN</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:6px">
+            <button class="btn primary" onclick="copyCashTag()">Copy Tag</button>
+            <button class="btn ghost" onclick="openDiscord()">Open Discord</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    function downloadOnly() {
-      window.location.href = 'https://github.com/Liexxxx/Liexxxx.github.io/raw/refs/heads/main/Inspect.gg.dll';
+    function scrollToSection(id){
+      document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
     }
+    function openModal(){document.getElementById('modal').classList.add('show')}
+    function closeModal(){document.getElementById('modal').classList.remove('show')}
+    function copyCashTag(){
+      navigator.clipboard && navigator.clipboard.writeText('$JayJayLXMN').then(()=>{
+        alert('Cash App tag copied: $JayJayLXMN');
+      },()=>{prompt('Copy this tag manually:','$JayJayLXMN')});
+    }
+    function openDiscord(){window.open('https://discord.gg/xXbv8JDpHp','_blank')}
+
+    // Small float animation for stars (non-essential)
+    const stars = document.querySelectorAll('.stars .star');
+    stars.forEach((s,i)=>{
+      const dur = 20 + Math.random()*60;
+      s.style.transition = `transform ${dur}s linear`;
+    });
   </script>
 </body>
-
 </html>
