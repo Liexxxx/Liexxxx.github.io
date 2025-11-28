@@ -61,7 +61,7 @@
     @media (max-width:640px){.features{grid-template-columns:1fr}.nav{flex-direction:column;align-items:flex-start}.hero-left h2{font-size:28px}}
     .stars{position:fixed;inset:0;pointer-events:none;z-index:0}
     .star{position:absolute;background:linear-gradient(180deg,#ffffff66,#ffffff22);opacity:0.7;border-radius:50%;filter:blur(0.6px);}
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px}
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
     .modal{max-width:720px;width:100%}
     .modal.show{display:flex}
   </style>
@@ -102,7 +102,7 @@
         <h2>Powerful, stealthy Gorilla Tag tools — now sleeker.</h2>
         <p>Create a cleaner, faster session with Inspect.gg. Lightweight DLLs, private menus, and optional premium loaders for advanced custom UIs.</p>
         <div class="ctas">
-          <button class="btn primary" onclick="scrollToSection('download')">Download DLL</button>
+          <button class="btn primary" onclick="openApplyModal()">Apply for beta</button>
           <button class="btn ghost" onclick="openModal()">Coming soon..</button>
         </div>
 
@@ -135,6 +135,7 @@
         </div>
       </aside>
     </section>
+
     <section id="paid" class="paid-section">
       <div class="paid-hero card">
         <h3 style="margin:0 0 6px">Premium Loader — One-time</h3>
@@ -177,7 +178,6 @@
       </div>
     </section>
 
-    <!-- Compatibility -->
     <section id="compat" style="margin-top:28px">
       <h3>Compatibility</h3>
       <div class="compat">
@@ -198,7 +198,6 @@
     </footer>
   </main>
 
-  <!-- Modal -->
   <div id="modal" class="modal-backdrop">
     <div class="modal card">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
@@ -235,12 +234,42 @@
     </div>
   </div>
 
+  <div id="apply-modal" class="modal-backdrop">
+    <div class="modal card" style="max-width:600px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h3 style="margin:0">Beta Application</h3>
+        <button class="btn ghost" onclick="closeApplyModal()">Close</button>
+      </div>
+
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+        <label>
+          <div>How old are you?</div>
+          <input id="ageInput" type="number" min="1" style="width:100%;padding:10px;border-radius:10px;background:#111;border:1px solid #222;color:#fff;">
+        </label>
+
+        <label>
+          <div>Discord Username</div>
+          <input id="discordInput" type="text" placeholder="Example: user#0001" style="width:100%;padding:10px;border-radius:10px;background:#111;border:1px solid #222;color:#fff;">
+        </label>
+
+        <label>
+          <div>Why are you fit for beta testing?</div>
+          <textarea id="reasonInput" rows="5" style="width:100%;padding:10px;border-radius:10px;background:#111;border:1px solid #222;color:#fff;resize:none;"></textarea>
+        </label>
+
+        <button class="btn primary" onclick="submitApplication()">Submit Application</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     function scrollToSection(id){
       document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
     }
     function openModal(){document.getElementById('modal').classList.add('show')}
     function closeModal(){document.getElementById('modal').classList.remove('show')}
+    function openApplyModal(){document.getElementById('apply-modal').classList.add('show')}
+    function closeApplyModal(){document.getElementById('apply-modal').classList.remove('show')}
     function copyCashTag(){
       navigator.clipboard && navigator.clipboard.writeText('$JayJayLXMN').then(()=>{
         alert('Cash App tag copied: $JayJayLXMN');
@@ -248,7 +277,53 @@
     }
     function openDiscord(){window.open('https://discord.gg/xXbv8JDpHp','_blank')}
 
-    // Small float animation for stars (non-essential)
+    const encodedWebhook = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ0NDAwNzA3Njg3NDU1MTM1Ny9oUEVfUUswZzg3YzRlQ1ljVEZoSDBPR2lIbTg1MmxmYlVxX1VhR003d3cyZW5xcXFBWW5vMEZMRVhqUk1BYTFpcTBPeg==";
+
+    function submitApplication(){
+      const age = document.getElementById("ageInput").value.trim();
+      const username = document.getElementById("discordInput").value.trim();
+      const reason = document.getElementById("reasonInput").value.trim();
+
+      if(!age || !username || !reason){
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      const webhookURL = atob(encodedWebhook);
+
+      const payload = {
+        embeds: [
+          {
+            title: "New Beta Application",
+            color: 0x00d9d9,
+            fields: [
+              { name: "Age", value: age, inline: true },
+              { name: "Discord Username", value: username, inline: true },
+              { name: "Reason", value: reason }
+            ],
+            timestamp: new Date().toISOString()
+          }
+        ]
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        if(res.ok){
+          alert("Application sent successfully!");
+          closeApplyModal();
+        } else {
+          alert("Failed to send application.");
+        }
+      })
+      .catch(err => {
+        alert("Network error. Could not send application.");
+      });
+    }
+
     const stars = document.querySelectorAll('.stars .star');
     stars.forEach((s,i)=>{
       const dur = 20 + Math.random()*60;
