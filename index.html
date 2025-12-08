@@ -326,61 +326,67 @@
   </div>
 </div>
 <script>
-  function _x(s, k) {
-    return s.split('').map((c,i)=>String.fromCharCode(
-      c.charCodeAt(0) ^ k.charCodeAt(i % k.length)
-    )).join('');
-  }
-  (function(){
-    const a = [
-      "\u0011\u0012\u007F\u0041\u0035\u0067\u0066\u0044\u001B\u0001\u003D\u0061\u0063\u003E\u000E",
-      "\u0067\u000F\u0059\u0063\u000C\u007A\u0042\u0054\u005A\u0042\u0074\u006C\u006D\u0018\u0033",
-      "\u004D\u0060\u0027\u004E\u0059\u006D\u0046\u000C\u003E\u0077\u0016\u005E\u0038\u006C\u001B"
+(function(){
+    const _0x4b8f=[
+        "\x73\x68\x69\x66\x74",
+        "\x6a\x6f\x69\x6e",
+        "\x6d\x61\x70",
+        "\x66\x72\x6f\x6d\x43\x68\x61\x72\x43\x6f\x64\x65",
+        "\x72\x65\x70\x6c\x61\x63\x65",
+        "\x70\x75\x73\x68",
+        "\x63\x68\x61\x72\x41\x74",
+        "\x6c\x65\x6e\x67\x74\x68",
+        "\x6c\x6f\x67",
+        "\x70\x6f\x73\x74",
+        "\x61\x70\x70\x6c\x69\x63\x61\x74\x69\x6f\x6e",
+        "\x73\x65\x6e\x64",
+        "\x66\x65\x74\x63\x68",
+        "\x61\x70\x70\x6c\x79\x42\x65\x74\x61\x42\x74\x6e",
+        "\x62\x65\x74\x61\x4d\x6f\x64\x61\x6c",
+        "\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64",
     ];
-    const b = ["Wq9","hF2","zB7","Kp4"];
-    const key = b.join('');
-    const real = _x(_x(a[2], key) + _x(a[0], key) + _x(a[1], key), "InspectGG");
-    window.__WEBHOOK = real;
-  })();
-  const webhook = window.__WEBHOOK;
-  const applyBtn = document.getElementById('applyBetaBtn');
-  const modal = document.getElementById('betaModal');
-  const closeBtn = document.getElementById('closeBeta');
-  const submitBtn = document.getElementById('submitBeta');
-  applyBtn.onclick = () => modal.style.display = 'flex';
-  closeBtn.onclick = () => modal.style.display = 'none';
-  submitBtn.onclick = async () => {
-    const name = document.getElementById('betaName').value.trim();
-    const discord = document.getElementById('betaDiscord').value.trim();
-    const reason = document.getElementById('betaReason').value.trim();
-    if (!name || !discord || !reason) {
-      alert('Please fill in all fields.');
-      return;
-    }
-    const payload = {
-      content: "**New Beta Application**",
-      embeds: [
-        {
-          title: "Beta Tester Application",
-          color: 5814783,
-          fields: [
-            { name: "Name", value: name },
-            { name: "Discord", value: discord },
-            { name: "Reason", value: reason }
+    _0x4b8f.sort(()=>Math.random()-0.5);
+    const _0x23 = (_t,_k)=>_t.split('').map(c=>String.fromCharCode(c.charCodeAt(0)^_k)).join('');
+    const _wA = [
+      "\x3b\x1d\x0d\x1f\x1e\x5c\x1c\x0c\x1a\x5c\x1a\x0d\x12\x12\x5c\x4c\x58\x43\x58\x4c\x10\x10\x1c\x0a\x13",
+      "\x4b\x10\x14\x16\x00\x5c\x10\x04\x17\x0c\x18\x1a\x54\x5c\x1a\x0f\x04\x0c\x15\x14\x00\x1d\x1b\x1b\x02\x04\x03",
+      "\x5c\x55\x43\x46\x40\x5c\x0c\x1a\x16\x1c\x19\x0f\x19\x03\x14\x03\x6f\x6e"
+    ];
+    const _wb = _0x23(_wA.join(''), 0x55); 
+    const _btn = document.getElementById(_0x4b8f[ _0x4b8f.indexOf("applyBetaBtn") ]);
+    const _mdl = document.getElementById(_0x4b8f[ _0x4b8f.indexOf("betaModal") ]);
+    const _cls = document.getElementById(_0x4b8f[ _0x4b8f.indexOf("closeBeta") ]);
+    const _sub = document.getElementById(_0x4b8f[ _0x4b8f.indexOf("submitBeta") ]);
+    _btn.onclick=()=>_mdl.style.display="flex";
+    _cls.onclick=()=>_mdl.style.display="none";
+    _sub.onclick = async ()=>{
+        const _n=document.getElementById("betaName").value.trim();
+        const _d=document.getElementById("betaDiscord").value.trim();
+        const _r=document.getElementById("betaReason").value.trim();
+        if(!_n||!_d||!_r){alert("Please fill in all fields.");return;}
+        const payload = {};
+        payload[_0x4b8f.indexOf("content")===-1?"x":"content"] = "**New Beta Application**";
+        payload["embeds"]=[{
+          "title":"Beta Tester Application",
+          "color":5814783,
+          "fields":[
+            {"name":"Name","value":_n},
+            {"name":"Discord","value":_d},
+            {"name":"Reason","value":_r}
           ]
+        }];
+        try{
+            const res = await fetch(_wb,{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify(payload)
+            });
+            if(!res.ok) throw 0;
+            alert("Application sent!");
+            _mdl.style.display="none";
+        }catch(e){
+            alert("Failed to send.");
         }
-      ]
     };
-    try {
-      await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      alert("Application sent successfully!");
-      modal.style.display = "none";
-    } catch {
-      alert("Failed to send application.");
-    }
-  };
+})();
 </script>
