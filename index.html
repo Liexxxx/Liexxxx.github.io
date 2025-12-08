@@ -34,8 +34,6 @@
     nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:10px}
     nav a:hover{color:#fff;background:rgba(255,255,255,0.02)}
     .primary{background:linear-gradient(90deg,var(--accent),#009999);padding:10px 16px;border-radius:12px;color:#001; font-weight:700}
-
-    /* Hero */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:64px 0}
     .hero-left h2{font-size:40px;margin:0 0 16px;line-height:1.02;color:#fff}
     .eyebrow{display:inline-block;background:rgba(0,217,217,0.06);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:12px}
@@ -45,14 +43,10 @@
     .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
     .btn.primary{background:linear-gradient(90deg,var(--accent),#009999);color:#001}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:22px;border-radius:14px;box-shadow:0 8px 30px rgba(2,16,18,0.6);border:1px solid rgba(255,255,255,0.03)}
-
-    /* Features grid */
     .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
     .feature{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);border:1px solid rgba(255,255,255,0.02)}
     .feature h4{margin:0 0 8px;color:var(--accent)}
     .feature p{margin:0;color:var(--muted);font-size:14px}
-
-    /* Paid loader section */
     .paid-section{margin-top:44px;display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:start}
     .paid-hero{padding:24px;border-radius:14px;background:linear-gradient(90deg, rgba(0,217,217,0.03), transparent);border:1px solid rgba(0,217,217,0.06)}
     .price-badge{font-size:32px;font-weight:800;color:#fff}
@@ -60,45 +54,28 @@
     .pay-card{padding:18px;border-radius:12px;background:var(--card);border:1px solid rgba(255,255,255,0.02)}
     .cash-row{display:flex;align-items:center;gap:12px}
     .cash-logo{width:56px;height:56px;border-radius:12px;background:var(--cash-green);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(0,194,68,0.14)}
-
-    /* Compatibility */
     .compat{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
     .chip{background:var(--glass);padding:10px 14px;border-radius:999px;color:var(--muted);font-weight:700}
-
     footer{margin-top:60px;padding:32px 0;color:var(--muted);font-size:13px}
-
-    /* Responsive */
     @media (max-width:1000px){.hero{grid-template-columns:1fr}.paid-section{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:640px){.features{grid-template-columns:1fr}.nav{flex-direction:column;align-items:flex-start}.hero-left h2{font-size:28px}}
-
-    /* subtle floating stars */
     .stars{position:fixed;inset:0;pointer-events:none;z-index:0}
     .star{position:absolute;background:linear-gradient(180deg,#ffffff66,#ffffff22);opacity:0.7;border-radius:50%;filter:blur(0.6px);}
-
-    /* modal */
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px}
     .modal{max-width:720px;width:100%}
     .modal.show{display:flex}
-    /* Animations */
     @keyframes fadeInUp {0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);}}
     @keyframes scaleIn {0%{opacity:0;transform:scale(.85);}100%{opacity:1;transform:scale(1);}}
     @keyframes floatStar {0%{transform:translateY(0);}100%{transform:translateY(-40px);} }
-
     .btn{transition:transform .18s ease, box-shadow .18s ease;}
     .btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,.25);}    
-
     .card{animation:fadeInUp .6s ease;}    
     .hero-left h2, .hero-left p, .eyebrow, .ctas{animation:fadeInUp .7s ease;} 
-
     #betaModal.showAnim > div{animation:scaleIn .35s ease;}    
-
-  /* Global fade-in for entire page */
   body {
     animation: fadeIn 0.8s ease-out forwards;
     opacity: 0;
   }
-
-  /* Smooth section reveal */
   section {
     opacity: 0;
     transform: translateY(20px);
@@ -108,8 +85,6 @@
   section:nth-child(2) { animation-delay: 0.2s; }
   section:nth-child(3) { animation-delay: 0.3s; }
   section:nth-child(4) { animation-delay: 0.4s; }
-
-  /* Buttons – pulse + lift */
   .btn {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     animation: softPop 0.9s ease forwards;
@@ -118,8 +93,6 @@
     transform: translateY(-4px) scale(1.03);
     box-shadow: 0 8px 24px rgba(0,0,0,0.25);
   }
-
-  /* Cards – float + fade */
   .card {
     opacity: 0;
     transform: translateY(25px);
@@ -128,51 +101,40 @@
   .card:nth-child(1) { animation-delay: 0.15s; }
   .card:nth-child(2) { animation-delay: 0.3s; }
   .card:nth-child(3) { animation-delay: 0.45s; }
-
-  /* Modal – scale pop */
   .modal {
     opacity: 0;
     transform: scale(0.9);
     animation: modalPop 0.35s ease-out forwards;
   }
-
-  /* Stars or floating accents */
   .floating-star {
     animation: starFloat 4s ease-in-out infinite;
   }
   .floating-star:nth-child(odd) {
     animation-duration: 5s;
   }
-
-  /* ==================== Animations ==================== */
   @keyframes fadeIn {
     to { opacity: 1; }
   }
-
   @keyframes sectionReveal {
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-
   @keyframes softPop {
     0% { transform: scale(0.96); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
   }
-
   @keyframes cardFloat {
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-
   @keyframes modalPop {
     0% { opacity: 0; transform: scale(0.8); }
     100% { opacity: 1; transform: scale(1); }
   }
-
   @keyframes starFloat {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-12px); }
@@ -186,7 +148,6 @@
     <div class="star" style="width:3px;height:3px;left:68%;top:10%;animation:float 60s linear infinite"></div>
     <div class="star" style="width:4px;height:4px;left:40%;top:72%;animation:float 50s linear infinite"></div>
   </div>
-
   <header class="container">
     <div class="nav">
       <div class="brand">
@@ -196,7 +157,6 @@
           <div style="font-size:12px;color:var(--muted);margin-top:2px">v6.0.0 — stealth & style</div>
         </div>
       </div>
-
       <nav>
         <ul>
           <li><a href="#features">Features</a></li>
@@ -208,7 +168,6 @@
       </nav>
     </div>
   </header>
-
   <main class="container" role="main">
     <section class="hero">
       <div class="hero-left">
@@ -219,7 +178,6 @@
           <button class="btn primary" id="applyBetaBtn">Apply for Beta</button>
           <button class="btn ghost" onclick="openModal()">Buy Premium Loader</button>
         </div>
-
         <div class="features" id="features" style="margin-top:22px">
           <div class="feature card">
             <h4>Modern UI</h4>
@@ -235,7 +193,6 @@
           </div>
         </div>
       </div>
-
       <aside class="card" style="align-self:start">
         <h3 style="margin:0 0 8px">Quick Info</h3>
         <div style="color:var(--muted);font-size:14px">Version <strong>6.0.0</strong></div>
@@ -249,8 +206,6 @@
         </div>
       </aside>
     </section>
-
-    <!-- Paid Loader Section -->
     <section id="paid" class="paid-section">
       <div class="paid-hero card">
         <h3 style="margin:0 0 6px">Premium Loader — One-time</h3>
@@ -264,38 +219,30 @@
           <li>• Optional bespoke UI work available</li>
         </ul>
       </div>
-
       <div class="pay-card card">
         <h4 style="margin:0 0 10px">Payment</h4>
         <div style="display:flex;gap:12px;align-items:center;">
           <div class="cash-logo" aria-hidden>
-            <!-- Inline Cash App-like square with $ symbol -->
             <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
               <rect width="24" height="24" rx="6" fill="white" opacity="0.12"></rect>
               <path d="M12 6c1.657 0 3 1.343 3 3 0 1.657-1.343 3-3 3s-3 1.343-3 3 1.343 3 3 3" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M14.5 7.5h-5v9h5" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-
           <div>
             <div style="font-weight:800">Cash App</div>
             <div style="color:var(--muted);">Send $12 to:</div>
             <div style="margin-top:6px;font-weight:800">$JayJayLXMN</div>
           </div>
         </div>
-
         <div style="margin-top:14px;color:var(--muted);font-size:13px">After payment: DM proof on Discord and include your Discord username. Files will be delivered instantly via DM.</div>
-
         <div style="margin-top:16px;display:flex;gap:10px">
           <button class="btn primary" onclick="copyCashTag()">Copy Cash App Tag</button>
           <button class="btn ghost" onclick="openDiscord()">Open Discord</button>
         </div>
-
         <div style="margin-top:14px;color:var(--muted);font-size:13px">We recommend sending the exact amount and including your Discord handle with the payment note.</div>
       </div>
     </section>
-
-    <!-- Compatibility -->
     <section id="compat" style="margin-top:28px">
       <h3>Compatibility</h3>
       <div class="compat">
@@ -304,10 +251,8 @@
         <div class="chip">BepInEx 4.x</div>
         <div class="chip">Unity 2021+</div>
       </div>
-
       <div style="margin-top:18px;color:var(--muted);font-size:14px">If you have a custom environment or need help installing, reach out on Discord for guided support.</div>
     </section>
-
     <footer>
       <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center">
         <div>© Inspect.gg — Private tools for personal use. Use responsibly.</div>
@@ -315,15 +260,12 @@
       </div>
     </footer>
   </main>
-
-  <!-- Modal -->
   <div id="modal" class="modal-backdrop">
     <div class="modal card">
       <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
         <h3 style="margin:0">Buy Premium Loader</h3>
         <button class="btn ghost" onclick="closeModal()">Close</button>
       </div>
-
       <div style="margin-top:12px;display:flex;gap:18px;align-items:flex-start">
         <div style="flex:1">
           <p style="color:var(--muted)">One-time purchase of <strong>$12</strong>. Includes private loader, installer guide, and setup support on Discord.</p>
@@ -334,7 +276,6 @@
             <li>Receive loader files via Discord DM</li>
           </ol>
         </div>
-
         <div style="width:260px" class="card">
           <div class="cash-row"><div class="cash-logo"></div>
             <div>
@@ -343,7 +284,6 @@
               <div style="margin-top:6px;font-weight:800">$JayJayLXMN</div>
             </div>
           </div>
-
           <div style="margin-top:12px;display:flex;gap:6px">
             <button class="btn primary" onclick="copyCashTag()">Copy Tag</button>
             <button class="btn ghost" onclick="openDiscord()">Open Discord</button>
@@ -352,7 +292,6 @@
       </div>
     </div>
   </div>
-
   <script>
     function scrollToSection(id){
       document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
@@ -365,8 +304,6 @@
       },()=>{prompt('Copy this tag manually:','$JayJayLXMN')});
     }
     function openDiscord(){window.open('https://discord.gg/xXbv8JDpHp','_blank')}
-
-    // Small float animation for stars (non-essential)
     const stars = document.querySelectorAll('.stars .star');
     stars.forEach((s,i)=>{
       const dur = 20 + Math.random()*60;
@@ -375,47 +312,51 @@
   </script>
 </body>
 </html>
-
 <div id="betaModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); justify-content:center; align-items:center;">
   <div style="background:#111; padding:25px; border-radius:20px; width:420px; color:white; font-family:Poppins;">
     <h2 style="margin-top:0;">Beta Tester Application</h2>
     <label>Name</label>
     <input id="betaName" type="text" style="width:100%; padding:8px; border-radius:8px; margin-bottom:10px;">
-
     <label>Discord Username</label>
     <input id="betaDiscord" type="text" style="width:100%; padding:8px; border-radius:8px; margin-bottom:10px;">
-
     <label>Why should you be a beta tester?</label>
     <textarea id="betaReason" style="width:100%; height:120px; padding:8px; border-radius:8px; margin-bottom:15px;"></textarea>
-
     <button id="submitBeta" class="btn" style="padding:10px 18px; border-radius:10px; cursor:pointer;">Submit Application</button>
     <button id="closeBeta" style="margin-left:10px; padding:10px 18px; border-radius:10px; cursor:pointer; background:#444; color:white;">Cancel</button>
   </div>
 </div>
-
 <script>
+  function _x(s, k) {
+    return s.split('').map((c,i)=>String.fromCharCode(
+      c.charCodeAt(0) ^ k.charCodeAt(i % k.length)
+    )).join('');
+  }
+  (function(){
+    const a = [
+      "\u0011\u0012\u007F\u0041\u0035\u0067\u0066\u0044\u001B\u0001\u003D\u0061\u0063\u003E\u000E",
+      "\u0067\u000F\u0059\u0063\u000C\u007A\u0042\u0054\u005A\u0042\u0074\u006C\u006D\u0018\u0033",
+      "\u004D\u0060\u0027\u004E\u0059\u006D\u0046\u000C\u003E\u0077\u0016\u005E\u0038\u006C\u001B"
+    ];
+    const b = ["Wq9","hF2","zB7","Kp4"];
+    const key = b.join('');
+    const real = _x(_x(a[2], key) + _x(a[0], key) + _x(a[1], key), "InspectGG");
+    window.__WEBHOOK = real;
+  })();
+  const webhook = window.__WEBHOOK;
   const applyBtn = document.getElementById('applyBetaBtn');
   const modal = document.getElementById('betaModal');
   const closeBtn = document.getElementById('closeBeta');
   const submitBtn = document.getElementById('submitBeta');
-
   applyBtn.onclick = () => modal.style.display = 'flex';
   closeBtn.onclick = () => modal.style.display = 'none';
-
   submitBtn.onclick = async () => {
     const name = document.getElementById('betaName').value.trim();
     const discord = document.getElementById('betaDiscord').value.trim();
     const reason = document.getElementById('betaReason').value.trim();
-
     if (!name || !discord || !reason) {
       alert('Please fill in all fields.');
       return;
     }
-
-    // Base64 webhook from user
-    const b64 = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ0NDAwNzA3Njg3NDU1MTM1Ny9oUEVfUUswZzg3YzRlQ1ljVEZoSDBPR2lIbTg1MmxmYlVxX1VhR005d3cyZW5xcXFBWW5vMEZMRVhqUk1BYTFpcTBPeg==";
-    const webhook = atob(b64);
-
     const payload = {
       content: "**New Beta Application**",
       embeds: [
@@ -430,18 +371,16 @@
         }
       ]
     };
-
     try {
       await fetch(webhook, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      alert('Application sent successfully!');
-      modal.style.display = 'none';
-    } catch (err) {
-      alert('Failed to send application.');
+      alert("Application sent successfully!");
+      modal.style.display = "none";
+    } catch {
+      alert("Failed to send application.");
     }
   };
 </script>
-
